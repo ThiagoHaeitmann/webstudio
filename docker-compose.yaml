@@ -1,13 +1,18 @@
-version: "3.9"
-
 services:
   web:
-    image: webstudio/webstudio:latest
+    build: .
     container_name: webstudio
+    restart: always
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: "sqlite:///data/db.sqlite"
-    volumes:
-      - ./data:/app/data
-    restart: always
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web.rule=Host(`haeicore.com.br`)"
+      - "traefik.http.routers.web.entrypoints=websecure"
+      - "traefik.http.routers.web.tls.certresolver=letsencrypt"
+
+networks:
+  dokploy-network:
+    external: true

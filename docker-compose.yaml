@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  webstudio:
+    image: webstudio/webstudio:latest
+    container_name: webstudio
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "sqlite:///data/db.sqlite"
+    volumes:
+      - ./data:/app/data
+    restart: always

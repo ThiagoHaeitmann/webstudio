@@ -3,6 +3,7 @@ FROM node:20 AS builder
 WORKDIR /app
 
 RUN npm install -g pnpm
+RUN npm install -g npm@latest pnpm
 
 # Copiar dependências
 COPY package.json pnpm-lock.yaml ./

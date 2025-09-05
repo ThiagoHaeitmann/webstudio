@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  webstudio:
+  web:
     image: webstudio/webstudio:latest
     container_name: webstudio
     ports:

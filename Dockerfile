@@ -5,6 +5,10 @@ WORKDIR /app
 RUN npm install -g pnpm
 RUN npm install -g npm@latest pnpm
 
+# Copia o monorepo inteiro (inclusive tsconfig compartilhado)
+RUN pnpm install --frozen-lockfile
+RUN pnpm build
+
 # Copiar dependências
 COPY package.json pnpm-lock.yaml ./
 COPY patches ./patches
